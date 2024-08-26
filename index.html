@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Search for a city" spellcheck="false">
+            <button><img src="images/search.png"></button>
+        </div>
+        <div class="weather">
+            <img src="images/Clear.png" class="weather-icon">
+            <h1 class="temp">20°C</h1>
+            <h2 class="city">New York</h2>
+        </div>
+        <div class="detail">
+            <div class="col">
+                <img src="images/humidity.png">
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="images/wind.png">
+                <div>
+                    <p class="wind">50 km/h</p>
+                    <p>Wind speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const apiKey = "6b94c301eb2252db57fe5cda73093dab";
+    const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric";
+    const searchInput = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const city = document.querySelector(".city");
+    const temp = document.querySelector(".temp");
+    const humidity = document.querySelector(".humidity");
+    const wind = document.querySelector(".wind");
+    const weatherIcon = document.querySelector(".weather-icon");
+
+    function upadatePage(data){
+        if (data.cod == "404") {
+            city.innerHTML = "City not found";
+            temp.innerHTML = "";
+            humidity.innerHTML = "";
+            wind.innerHTML = "";
+            weatherIcon.src = "";
+            return;
+        }
+        city.innerHTML = data.name;
+        temp.innerHTML = Math.round(data.main.temp) + "°C";
+        humidity.innerHTML = data.main.humidity + "%";
+        wind.innerHTML = data.wind.speed + " km/h";
+        weatherIcon.src = `images/${data.weather[0].main}.png`;
+    }
+
+    async function checkWeather(){
+        const response = await fetch(URL + `&q=${searchInput.value}&appid=${apiKey}`);
+        let data = await response.json();
+        console.log(data);
+        upadatePage(data);
+    }
+    searchBtn.addEventListener("click", () => {
+        checkWeather();
+    });
+
+    // get user location and update weather
+    navigator.geolocation.getCurrentPosition(success, (error) => {
+        // console.error("無法獲取位置：", error.message);
+        upadatePage({cod: "404", message: "City not found"});
+    });
+    async function success(position){
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const response = await fetch(URL + `&lat=${latitude}&lon=${longitude}&appid=${apiKey}`);
+        let data = await response.json();
+        // console.log(data);
+        upadatePage(data);
+    }
+</script>
+</html>

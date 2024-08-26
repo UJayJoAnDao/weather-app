@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #222;
+}
+
+.card {
+    width:90%;
+    max-width: 500px;
+    margin: 100px auto 0;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #fff;
+    padding: 40px 35px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search input {
+    width: 100%;
+    height: 50px;
+    padding: 10px 25px;
+    border: none;
+    outline: none;
+    background: #f2f2f2;
+    border-radius: 50px;
+    color: #555;
+    font-size: 18px;
+    font-weight: 5;
+    margin-right: 20px;
+}
+
+.search button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ebfffc;
+    /* color: #fff; */
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+.search button img {
+    width: 50px;
+}
+
+.weather .weather-icon {
+    width: 50%;  /* 設置為 .card 寬度的一半 */
+    max-width: 170px;  /* 設置最大寬度為 .card 最大寬度的一半 */
+    margin-top: 30px;
+}
+
+.weather h1 {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.weather h2 {
+    font-size: 25px;
+    font-weight: 450;
+    margin-top: -10px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 將內容置中 */
+    padding: 0 20px;
+    margin-top: 30px;
+    /* 移除邊框，除非您想保留 */
+    /* border: 1px solid #f00; */
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    /* 移除邊框，除非您想保留 */
+    /* border: 1px solid #fff; */
+}
+
+/* 為第一個 .col 添加右邊距 */
+.col:first-child {
+    margin-right: 20px; /* 調整這個值來改變間隔大小 */
+}
+
+/* 為第二個 .col 添加左邊距 */
+.col:last-child {
+    margin-left: 20px; /* 調整這個值來改變間隔大小 */
+}
+
+/* 小螢幕 */
+@media (max-width: 425px) {
+    .detail {
+        flex-direction: column;
+    }
+    
+    .col:first-child {
+        margin-right: 0;
+        margin-bottom: 10px; /* 在垂直佈局時添加底部間距 */
+    }
+    
+    .col:last-child {
+        margin-left: 0;
+        margin-top: 10px; /* 在垂直佈局時添加頂部間距 */
+    }
+}
+
+/* 大螢幕 */
+@media (min-width: 425px) {
+    .detail{
+        flex-direction: row;
+    }
+    
+}
+.col img {
+    width: 40px;
+    margin-right: 10px;
+    /* border: 1px solid #ccc; */
+}
+.humidity, .wind {
+    font-size: 28px;
+    font-weight: 500;
+    margin-top: -6px;
+}
+
