@@ -36,7 +36,7 @@
     </div>
 </body>
 <script>
-    const apiKey = "6b94c301eb2252db57fe5cda73093dab";
+    const apiKey = process.env.API_KEY;
     const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric";
     const searchInput = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
