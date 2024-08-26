@@ -36,7 +36,11 @@
     </div>
 </body>
 <script>
-    const apiKey = process.env.API_KEY;
+    // 這裡的 API_KEY 將在構建過程中被替換
+    window.API_KEY = '{{API_KEY}}';
+  </script>
+<script>
+    const apiKey = window.API_KEY;
     const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric";
     const searchInput = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
