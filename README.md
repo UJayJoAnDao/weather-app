@@ -9,6 +9,11 @@
 - 顯示溫度、濕度和風速
 - 根據天氣狀況顯示相應的圖標
 
+![weather-app-demo](image.png)
+## 演示
+
+您可以在這裡查看 App 的線上演示：[天氣應用程式](https://ujayjoandao.github.io/weather-app/)
+
 ## 技術
 
 - HTML
